@@ -4,7 +4,7 @@ buttonsArr = document.getElementsByClassName("button");
 var backgroundFilePath;
 var bgData;
 
-const fileTree = "../assets/backgrounds/"
+const fileTree = "../pomo/assets/backgrounds/"
 
 const bgStates = {
     gardenNight: "gardenNight",
