@@ -71,7 +71,7 @@ body{
 }
 
 #pomo-title{
-    font-size: clamp(3vw, 4vw, 5vw)
+    font-size: 1em;
 }
 
 #menu-show{
@@ -107,7 +107,7 @@ body{
     border-width: 0px;
     border-radius: 10px;
     font-family: main-font;
-    font-size: 3vw;
+    font-size: 1.5rem
  
 }
 
