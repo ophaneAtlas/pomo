@@ -1,0 +1,36 @@
+@keyframes show-fade {
+
+    0% {opacity: 0%;}
+
+    100% {opacity: 100%;}
+    
+}
+
+.hide{
+    display: none;
+    
+}
+
+#time-settings-flex.hide{
+    display: none;
+}
+
+#watch-settings-flex.hide{
+    display:none;
+}
+
+#auto-set.hide{
+    display:none;
+}
+
+#manual-set.hide{
+    display:none;
+}
+
+#bg-settings-flex.hide{
+    display:none;
+}
+
+.show{
+    animation: show-fade ease-out 1s forwards;
+}

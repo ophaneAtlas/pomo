@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="root.css">
+    <link rel="stylesheet" href="pomo-style.css">
+    <link rel="stylesheet" href="settings-style.css">
+    <link rel="stylesheet" href="input-style.css">
+    <link rel="stylesheet" href="hide-show.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="height=device-height, initial-scale=1" />
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <h2 id="pomo-title"></h2>
+
+        <div id="pomo-timer-output" class="output-wrapper timer">
+            <p id="timer-out-h" class="timer-num timer">0</p>
+            <h2 class="colon timer">:</h2>
+            <p id="timer-out-m" class="timer-num timer">0</p>
+            <h2 class="colon timer">:</h2>
+            <p id="timer-out-s" class="timer-num timer">0</p>
+        </div>
+
+        <div class="timer-buttons timer">
+            <button id="timer-start" onClick="startTimer()" class="timer button">▶︎</button>
+            <button id="timer-start" onClick="pauseTimer()" class="timer button">❚❚</button>
+            <button id="timer-reset" onClick="stopTimer()" class="timer button">↪</button>
+        </div>
+
+        <div id="pomo-watch" class="output-wrapper stopwatch">
+            <p id='watch-h' class='watch-num stopwatch'>0</p>
+            <h2 class="colon stopwatch">:</h2>
+            <p id='watch-m' class="watch-num stopwatch">0</p>
+            <h2 class="colon stopwatch">:</h2>
+            <p id='watch-s' class="watch-num stopwatch">0</p>
+        </div>
+
+        <div class="watch-buttons stopwatch">
+            <button id="watch-start" class="stopwatch button" onClick="startWatch()">▶︎</button>
+            <button id="watch-break" class="stopwatch button" onClick="startBreak()">⚑</button>
+            <button id="watch-reset" class="stopwatch button" onClick="resetWatch()">↪</button>
+        </div>
+
+        <h3 id="menu-show" class="toggle-menu" onClick="showMenu()">☰</h3>
+
+        <div class="settings-wrapper hide">
+
+            <div id="set-options">
+                <h3 id="timer-select" class="select-text option" onClick="showTimeSet(); timerSelect()">Timer</h3>
+                <h3 id="watch-select" class="select-text option" onClick="showTimeSet(); watchSelect()">Stopwatch</h3>
+                <h3 id="bg" class="option" onClick="showBgSet()">Backgrounds</h3>
+                <h3 id="sound" class="option" onClick="showSoundSet()">Music + Ambience</h3>
+                <h3 id="back-menu" class="toggle-menu" onClick="hideMenu()"> Back </h3>
+
+            </div>
+
+
+            <div id="time-settings-flex">
+
+                <h3 class="timer">Timer</h3>
+
+                <div id="pomo-timer-input" class="timer set-timer">
+                    <input id="timer-h" class="num-input" type="number" min="0" placeholder="H"></input>
+                    <h2 class="set-colon">:</h2>
+                    <input id="timer-m" class="num-input" type="number" min="0" placeholder="M"></input>
+                </div>
+
+                <h3 class="timer">Short Break</h3>
+
+                <div id="pomo-timer-shbreak" class="timer set-timer">
+                    <input id="shbreak-h" class="num-input" type="number" min="0" step="1" placeholder="H"></input>
+                    <h2 class="set-colon">:</h2>
+                    <input id="shbreak-m" class="num-input" type="number" min="0" step="1" placeholder="M"></input>
+                </div>
+
+                <h3 class="timer">Long Break</h3>
+
+                <div id="pomo-timer-lgbreak" class="timer set-timer">
+                    <input id="lgbreak-h" class="num-input" type="number" min="0" step="1" placeholder="H"></input>
+                    <h2 class="set-colon">:</h2>
+                    <input id="lgbreak-m" class="num-input" type="number" min="0" step="1" placeholder="M"></input>
+                </div>
+
+                <div id="watch-settings-flex" class="stopwatch">
+                    <div id="watch-mode" class="stopwatch">
+                        <h4 id="watch-auto" class="stopwatch" onClick="setAuto()">Auto Mode</h4>
+                        <h4 id="watch-manu" class="stopwatch" onClick="setManual()">Manual Mode</h4>
+                    </div>
+
+                    <div id="auto-set" class="hide">
+                        <h3 id="auto-short" class="auto-option" onClick="shortTimeMode()">Short Breaks</h3>
+                        <h3 id="auto-med" class="auto-option" onClick="medTimeMode()">Medium Breaks</h3>
+                        <h3 id="auto-long" class="auto-option" onClick="longTimeMode()">Long Breaks</h3>
+                    </div>
+
+                    <div id="manual-set">
+                        <h3 class="stopwatch">Short Break Marker</h3>
+
+                        <div id="watch-shbreak-mark" class="stopwatch set-watch">
+                            <input id="shmark-h" class="num-input" type="number" min="0" step="1"
+                                placeholder="H"></input>
+                            <h2 class="set-colon">:</h2>
+                            <input id="shmark-m" class="num-input" type="number" min="0" step="1"
+                                placeholder="M"></input>
+                        </div>
+
+                        <h3 class="stopwatch">Short Break Time</h3>
+
+                        <div id="watch-shbreak-time" class="stopwatch set-watch">
+                            <input id="w-shbreak-h" class="num-input" type="number" min="0" step="1"
+                                placeholder="H"></input>
+                            <h2 class="set-colon">:</h2>
+                            <input id="w-shbreak-m" class="num-input" type="number" min="0" step="1"
+                                placeholder="M"></input>
+                        </div>
+
+                        <h3 class="stopwatch">Long Break Marker</h3>
+
+                        <div id="watch-lgbreak-mark" class="stopwatch set-watch">
+                            <input id="lgmark-h" class="num-input" type="number" min="0" step="1"
+                                placeholder="H"></input>
+                            <h2 class="set-colon">:</h2>
+                            <input id="lgmark-m" class="num-input" type="number" min="0" step="1"
+                                placeholder="M"></input>
+                        </div>
+
+                        <h3 class="stopwatch">Long Break Time</h3>
+
+                        <div id="watch-lgbreak-time" class="stopwatch set-watch">
+                            <input id="w-lgbreak-h" class="num-input" type="number" min="0" step="1"
+                                placeholder="H"></input>
+                            <h2 class="set-colon">:</h2>
+                            <input id="w-lgbreak-m" class="num-input" type="number" min="0" step="1"
+                                placeholder="M"></input>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+            <div id="bg-settings-flex" class="hide">
+                <h3 id="garden-option" class="bg-option" onClick="gardenRain()">Garden Rain</h3>
+                <h3 id="n-city-option" class="bg-option" onClick="nightCity()">Night City</h3>
+            </div>
+
+            <div id="sound-settings-flex" class="hide">
+                Adding Sound Settings...
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="pomoTimer.js"></script>
+    <script src="pomoWatch.js"></script>
+    <script src="menuToggle.js"></script>
+    <script src="selectMode.js"></script>
+    <script src="highlight.js"></script>
+    <script src="sel-settings.js"></script>
+    <script src="switchBg.js"></script>
+</body>
+
+</html>

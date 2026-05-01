@@ -1,0 +1,10 @@
+@font-face{
+    font-family: main-font;
+    src: url("../assets/fonts/LiberationMono-Bold.ttf");
+
+}
+:root{
+    --main-text-color: #97AF9A;
+    --fill-color: #050f1b;
+    --secondary-text-color: #F8F7F1;
+}
