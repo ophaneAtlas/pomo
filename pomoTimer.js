@@ -1,5 +1,6 @@
 const timerStates = {
     WORK : "WORK",
+    PAUSE: "PAUSE",
     SHBREAK : "SHBREAK",
     LGBREAK : "LGBREAK"
 }
@@ -24,6 +25,7 @@ var tHour = 0;
 var tMin = 0;
 var tSec = 0;
 var totalTimer = 0; //this is in seconds
+var timePaused = 0;
 var timer = null;
 var timerGoing = false;
 var tickHour = 0;
@@ -91,6 +93,9 @@ function switchState(){
         totalTimer = tHour * 60 * 60 + tMin * 60 + tSec;
         timerEndTime = Date.now() + totalTimer * 1000;
         break;
+    case "PAUSE":
+        timePaused = telapsed;
+        
     case "SHBREAK":
         tHour = parseInt(sBreakHour.value);
         tMin = parseInt(sBreakMin.value);
@@ -134,23 +139,33 @@ function startTimer(){
     
 };
 
+function pauseTimer(){
+    timePaused = telapsed;
+    
+}
+
 function startTicking(){
     //TO-DO:
     //Sound effects for when the timer is over 
     ///Different sounds for long vs short timer?
     timer = setInterval(() => {
         telapsed = Math.floor((timerEndTime - Date.now())/1000)
-        totalTimer = telapsed; 
+        totalTimer = telapsed;
+        var ring = "./assets/sounds/rings/video-game.mp3"; 
         if (totalTimer <= 0){
             switch (currentState){
                 case "WORK":
                     if(breakCounter <= longBreakReq){
-                        breakCounter++
+                        var audio = new Audio(ring);
+                        audio.play();
+                        breakCounter++;
                         clearInterval(timer);
                         currentState = timerStates.SHBREAK;
                         switchState();
                         startTicking();
                     }else{
+                        var audio = new Audio(ring);
+                        audio.play();
                         breakCounter = 0;
                         clearInterval(timer);
                         currentState = timerStates.LGBREAK;
@@ -159,7 +174,9 @@ function startTicking(){
                     }
                     break;
 
-                case "SHBREAK": 
+                case "SHBREAK":
+                    var audio = new Audio(ring);
+                    audio.play();
                     clearInterval(timer);
                     currentState = timerStates.WORK;
                     switchState();
@@ -167,6 +184,8 @@ function startTicking(){
                     break;
 
                 case "LGBREAK":
+                    var audio = new Audio(ring);
+                    audio.play();
                     clearInterval(timer);
                     currentState = timerStates.WORK;
                     switchState();
