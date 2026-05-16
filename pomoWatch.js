@@ -271,10 +271,13 @@ function countDown() {
     console.log("counting down");
     welapsed = 0;
     totalWatch = 0;
+    var ring = "./assets/sounds/rings/video-game.mp3";
     watch = setInterval(() => {
         welapsed = Math.floor((breakEndTime - Date.now()) / 1000);
         totalWatch = welapsed;
         if (totalWatch <= 0) {
+            var audio = new Audio(ring);
+            audio.play;
             clearInterval(watch);
             wstartTime = Date.now();
             currentWatchState = watchStates.WORK;
